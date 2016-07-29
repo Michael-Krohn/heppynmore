@@ -39,17 +39,20 @@ class TreeCache:
         theName = sample.name
         print('Reading sample <<<< %s' %sample)
         source = '%s/%s' %(self.path,sample.get_path)
+	print('%s/%s' %(self.path,sample.get_path))
+	print('%s' %self.path)
         checksum = self.get_checksum(source)
         theHash = hashlib.sha224('%s_s%s_%s' %(sample,checksum,self.minCut)).hexdigest()
         self.__hashDict[theName] = theHash
-        tmpSource = '%s/tmp_%s.root'%(self.__tmpPath,theHash)
+        tmpSource = '%stmp_%s.root'%(self.__tmpPath,theHash)
         print('From: %s' %tmpSource)
         if self.__doCache and self.file_exists(tmpSource):
             return
         output = ROOT.TFile.Open(tmpSource,'create')
         input = ROOT.TFile.Open(source,'read')
         output.cd()
-        tree = input.Get(sample.tree)
+        tree = input.Get("tree")
+	#tree = input.Get(sample.tree)
         try:
             CountWithPU = input.Get("CountWeighted")
             sample.count_with_PU = CountWithPU.GetBinContent(1) 
@@ -69,7 +72,9 @@ class TreeCache:
         output.cd()
         theCut = self.minCut
         if sample.subsample:
-            theCut += '& (%s)' %(sample.subcut)
+            theCut += '&& (%s)' %(sample.subcut)
+	print('subCut: %s' %(sample.subcut))
+	print('theCut: %s' %theCut)
         cuttedTree=tree.CopyTree(theCut)
         cuttedTree.Write()
         output.Write()
@@ -87,7 +92,7 @@ class TreeCache:
 
     def get_tree(self, sample, cut):
         input = ROOT.TFile.Open('%s/tmp_%s.root'%(self.__tmpPath,self.__hashDict[sample.name]),'read')
-        tree = input.Get(sample.tree)
+        tree = input.Get("tree")
         try:
             CountWithPU = input.Get("CountWeighted")
             sample.count_with_PU = CountWithPU.GetBinContent(1) 
@@ -117,6 +122,16 @@ class TreeCache:
             theScale = lumi*sample.xsec*sample.sf/(sample.count_with_PU)
         elif anaTag == '13TeV':
             theScale = lumi*sample.xsec*sample.sf/(sample.count_with_PU)
+	    #print ('lumi:')
+	    #print (lumi)
+	    #print ('xsec:')
+	    #print (sample.xsec)
+	    #print ('sample.sf:')
+	    #print (sample.sf)
+	    #print ('sample.count_with_PU:')
+	    #print (sample.count_with_PU)
+	    #print ('theScale:')
+	    #print (theScale)
         return theScale
 
     @staticmethod

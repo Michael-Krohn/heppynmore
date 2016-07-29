@@ -60,7 +60,10 @@ def doPlot():
         SignalRegion = True
             
     datasamples = info.get_samples(data)
+    #print datasamples
     mcsamples = info.get_samples(mc)
+    #print mcsamples
+    #print path
 
     GroupDict = eval(config.get('Plot_general','Group'))
 
@@ -70,7 +73,7 @@ def doPlot():
     for i in range(len(vars)):
         Stacks.append(StackMaker(config,vars[i],region,SignalRegion))
         options.append(Stacks[i].options)
-    print options
+    #print options
 
     Plotter=HistoMaker(mcsamples+datasamples,path,config,options,GroupDict)
 
@@ -114,9 +117,13 @@ def doPlot():
         else:
             dDictList = Plotter.get_histos_from_tree(job)
         for v in range(0,len(vars)):
+	    print 'dDictList: '
+	    print dDictList
             Ldatas[v].append(dDictList[v].values()[0])
             Ldatatyps[v].append(dDictList[v].keys()[0])
             Ldatanames[v].append(job.name)
+	    print Ldatanames[v]
+	    print Ldatas[v]
 
     for v in range(0,len(vars)):
 

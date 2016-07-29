@@ -103,6 +103,8 @@ class HistoMaker:
                 else: 
                     ScaleFactor = self.tc.get_scale(job,self.config,self.lumi)
                 if ScaleFactor != 0:
+	     	    #print('ScaleFactor')
+		    #print(ScaleFactor)
                     hTree.Scale(ScaleFactor)
             #print '\t-->import %s\t Integral: %s'%(job.name,hTree.Integral())
             if addOverFlow:
@@ -124,7 +126,7 @@ class HistoMaker:
                 gDict[group] = hTree
             hTreeList.append(gDict)
         CuttedTree.IsA().Destructor(CuttedTree)
-        del CuttedTree
+        #del CuttedTree
         return hTreeList
        
     @property

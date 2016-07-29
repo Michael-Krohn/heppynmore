@@ -52,7 +52,7 @@ def hadd_files(target_file,target_dir,source_dir):
 		    for __file in __tuple_entry[2]:
     		        __list_of_files.extend(['%s/%s' %(__tuple_entry[0], __file)]) # __tuple_entry[0] is the full path of the files
     	# check if these are root files and store the information
-    	__skimmed_list_of_files = [el for el in __list_of_files if ('root' in el)]
+    	__skimmed_list_of_files = [el for el in __list_of_files if ('6.root' in el)]
 	for __root_file in __skimmed_list_of_files:
     		logging.debug(__root_file)
     		__fileslist='%s %s' %( __fileslist, __root_file )

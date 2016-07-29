@@ -1,4 +1,5 @@
 [Configuration]
+
 #!! List of the config you want to use
 #!! The number of config has to be exaclty 7
 #!! The list only support spaces between configs
@@ -6,17 +7,18 @@ List = paths general cuts training datacard plots lhe_weight
 
 [Directories]
 #!! just a variable
-Dname:heppynmore
+Dname:heppynmore_NoMiniTrees
 #!! Working Directory
-Wdir=/uscms_data/d3/cvernier/heppycode/CMSSW_7_4_15/src/
-samplepath = /eos/uscms/store/group/lpchbb/HeppyNtuples/V14/
-t3Private = /eos/uscms/store/group/lpchbb/HeppyNtuples/V14/heppynmore/
+Wdir=/uscms_data/d3/mkrohn/CMSSW_8_0_12/src/
+samplepath = /eos/uscms/store/user/mkrohn/HHTo4b/SkimmedHeppy_nTuples/
+t3Private = /eos/uscms/store/user/mkrohn/HHTo4b/private_4/
+#t3Private = /uscms_data/d3/mkrohn/CMSSW_8_0_12/src/heppynmore_NoMiniTrees/private
 scratch = <!Directories|vhbbpath!>/
 
 #!! The directory with the code
 vhbbpath= <!Directories|Wdir!>/<!Directories|Dname!>/
 #!! specifies the .cfg files with the Samples information
-samplesinfo: <!Directories|vhbbpath!>/python/heppy13TeVconfig/samples_nosplit.cfg
+samplesinfo: <!Directories|vhbbpath!>/python/hh13TeVconfig/samples_nosplit.cfg
 #!! where you want to store the logfiles from job submissions
 logpath=<!Directories|vhbbpath!>/LOG/
 
@@ -35,7 +37,7 @@ limits: <!Directories|vhbbpath!>/Limit_expertAllnominal/
 
 #!! From where to take the raw samples and where to put the prepared trees:
 PREPin: <!Directories|samplepath!>
-PREPout: /eos/uscms/store/user/cvernier/env/
+PREPout: /eos/uscms/store/user/mkrohn/HHTo4b/SkimmedHeppy_nTuples
 #<!Directories|vhbbpath!>/env/
 #PREPout: <!Directories|scratch!>/
 

@@ -37,4 +37,4 @@ for job in info:
         continue
     if job.subsample:
         continue
-    copytree(pathIN,pathOUT,prefix,job.prefix,job.identifier,'',job.addtreecut)
+    copytree(pathIN,pathOUT,prefix,job.prefix,job.identifier,'','HLT_BIT_HLT_PFHT800_v==1 && Vtype ==-1')

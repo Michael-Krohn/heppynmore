@@ -110,6 +110,7 @@ class ParseInfo:
                 if sampleType != 'DATA':
                     subxsecs = eval((config.get(sample, 'xSec')))
                     subsfs = eval((config.get(sample, 'SF')))
+		    print subsfs
                 newsamples = []
                 for i,cut in enumerate(subcuts):
                     newsubsample = copy(newsample)
@@ -118,6 +119,7 @@ class ParseInfo:
                     newsubsample.subcut = subcuts[i]
                     newsubsample.group = subgroups[i]
                     if sampleType != 'DATA':
+	  		print subsfs[i]
                         newsubsample.sf = float(subsfs[i])
                         newsubsample.xsec = float(subxsecs[i])
                     newsamples.append(newsubsample)

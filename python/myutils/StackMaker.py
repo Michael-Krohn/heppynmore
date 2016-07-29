@@ -145,7 +145,7 @@ class StackMaker:
         TdrStyles.tdrStyle()
         histo_dict = HistoMaker.orderandadd([{self.typs[i]:self.histos[i]} for i in range(len(self.histos))],self.setup)
         #sort
-        print histo_dict
+        #print histo_dict
         self.histos=[histo_dict[key] for key in self.setup]
         self.typs=self.setup
     
@@ -195,7 +195,7 @@ class StackMaker:
         #ORDER AND ADD TOGETHER
 
         if not 'DYc' in self.typs: self.typLegendDict.update({'DYlight':self.typLegendDict['DYlc']})
-        print self.typLegendDict
+        #print self.typLegendDict
 
         k=len(self.histos)
     
@@ -316,6 +316,8 @@ class StackMaker:
             tLumi = self.myText("#sqrt{s} =  %s, L = %.1f fb^{-1}"%(self.anaTag,(float(self.lumi)/1000.)),0.17,0.78)
         else:
             tLumi = self.myText("#sqrt{s} =  %s, L = %.1f fb^{-1}"%(self.anaTag,(float(self.lumi)/1000.)),0.17,0.83)
+            print 'LUMI 3: '
+            print self.lumi	    
         tAddFlag = self.myText(addFlag,0.17,0.78)
         print 'Add Flag %s' %self.addFlag2
         if self.addFlag2:
